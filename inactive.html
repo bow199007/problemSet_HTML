@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>不常用的知识点合集</title>
+<title>知识点合集01</title>
 <link href="reset.css" rel="stylesheet" type="text/css"/>
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="container">
-    <h2 class="asset-name">不常用的知识点合集</h2>
+    <h2 class="asset-name">知识点合集</h2>
     <p>1.如果一个元素是fixed定位，不定宽，不定高，如果只利用css实现页面居中显示</p>
     <blockquote>
         选择器{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);}
@@ -16,6 +16,33 @@
 
     <p>2.textarea是可编辑的，h5新增标签属性使得div这类的标签内也可进行编辑</p>
     <blockquote>&lt;div contenteditable="true"&gt;&lt;/div&gt;</blockquote>
+
+    <p>3.浏览器默认滚动条样式修改（仅支持webkit内核浏览器）</p>
+    <blockquote>
+        <pre>
+    /* 设置滚动条的样式 */
+    ::-webkit-scrollbar {
+        width: 28px;
+    }
+    /* 滚动槽 */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+    /* 滚动条滑块 */
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: rgba(0,0,0,0.1);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(255,0,0,0.4);
+    }
+        </pre>
+    </blockquote>
+
+    <p>4.</p>
+    <blockquote></blockquote>
 </div>
 </body>
 </html>
