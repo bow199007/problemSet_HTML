@@ -24,3 +24,4 @@ a:hover{text-decoration:none;color:#ff5252 !important}
 a:focus,input,textarea,select{-moz-outline:0;outline:0}
 a,button,input,textarea{outline:0;text-decoration:none;-webkit-tap-highlight-color:transparent}
 input,textarea{-webkit-appearance:none;border-radius:0}
+.weight{font-weight:bold;}
