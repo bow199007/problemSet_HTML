@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>compatible01</title>
+    <link href="reset.css" rel="stylesheet" type="text/css"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="container">
+    <h2 class="asset-name">html_css兼容性集合01</h2>
+    <p>1.max-width,max-height</p>
+    <blockquote>max-width:800px; width:expression(this.width>800?"800px":this.width);（IE6有效）<br/>
+        max-height:590px; height:expression(this.height>590?"590px":this.height);
+    </blockquote>
+    <p>2、半透明</p>
+    <blockquote>opacity:0.6;filter:alpha(opacity=60);-moz-opacity:0.3;</blockquote>
+    <p>3、火狐hack的专属写法：</p>
+    <blockquote>
+        @-moz-documenturl-prefix(){这搭是放css语句的处所}<br/>
+        .input2{width:30px;height:21px;padding-top:4px;border:1px solid#d5d5d5;position:relative;*top:4px;}<br/>
+        @-moz-document url-prefix(){.input2{top:2px;}}
+    </blockquote>
+</div>
+
+</body>
+</html>
