@@ -2,17 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>select与弹出框优先级问题</title>
+<title>IE6下select与弹出框优先级问题</title>
 <link href="reset.css" rel="stylesheet" type="text/css"/>
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="container">
-    <h2 class="asset-name">select与弹出框优先级问题</h2>
-    <p class="branchesNumber"></p>
+    <h2 class="asset-name">IE6下select与弹出框优先级问题</h2>
+    <p class="branchesNumber">在弹出框内加入iframe，利用iframe的特性，遮住select</p>
     <blockquote>
-
+        &lt;iframe style="position:absolute;z-index:3;width:expression(this.nextSibling.offsetWidth);height:expression(this.nextSibling.offsetHeight);top:expression(this.nextSibling.offsetTop);left:expression(this.nextSibling.offsetLeft);" frameborder="0" allowtransparency="true">&lt;/iframe>
     </blockquote>
+    <p class="branchesNumber">实际应用：</p>
+    <blockquote>
+        <pre>
+        &lt;div class="beadif" style="position:relative;z-index:200;">
+            &lt;iframe style="position:absolute;z-index:300;width:expression(this.nextSibling.offsetWidth);height:expression(this.nextSibling.offsetHeight);top:expression(this.nextSibling.offsetTop);left:expression(this.nextSibling.offsetLeft);" frameborder="0" >&lt;/iframe>
+            &lt;div class="subord" style="position:absolute;z-index:400;">&lt;/div>
+        &lt;/div></pre>
+    </blockquote>
+    <p>width:expression(this.nextSibling.offsetWidth);height:expression(this.nextSibling.offsetHeight);top:expression(this.nextSibling.offsetTop);left:expression(this.nextSibling.offsetLeft);<br/>
+        可以根据弹出框的实际大小跟换具体数值；<br/>
+        allowtransparency="true";使得iframe透明，在这种情况，这个属性需要去掉。</p>
 </div>
 </body>
 </html>

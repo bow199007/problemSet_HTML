@@ -14,6 +14,6 @@ blockquote{background-color: #f5f2f0;
     border-color: #e0dfcc;
     border-style: solid;
     text-shadow: 0 1px white;
-    overflow: auto;
+    overflow:auto;
 }
-#container pre{margin-bottom:-20px;overflow:hidden;}
+#container pre{}

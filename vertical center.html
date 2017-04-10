@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>内容垂直居中</title>
+<link href="reset.css" rel="stylesheet" type="text/css"/>
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="container">
+    <h2 class="asset-name">内容垂直居中</h2>
+    <p class="branchesNumber">1.第一种情况，在已知高度的状态下，以li为例，兼容到IE6</p>
+    <img src="images/compatible02.jpg" title="" alt="" />
+    <blockquote>
+    <pre>
+    .wrap{width:95px; height:45px;display:table;*position:relative;}
+    .hack{display:table-cell; vertical-align:middle;*position:absolute;*top:50%;}
+    .cnt{*position:relative;*top:-50%;}</pre>
+    </blockquote>
+
+    <p class="branchesNumber">2.未知高度</p>
+    <div>
+        尽管有CSS的vertical-align特性，但是并不能有效解决未知高度的垂直居中问题（在一个DIV标签里有未知高度的文本或图片的情况下）。<br/>
+        标准浏览器如Mozilla, Opera, Safari等.，可将父级元素显示方式设定为TABLE(display: table;) ，内部子元素定为table-cell (display: table-cell),通过vertical-align特性使其垂直居中，但非标准浏览器是不支持的。<br/>
+        非标准浏览器只能在子元素里设距顶部50%，里面再套个元素距顶部-50%来抵消。
+    </div>
+    <blockquote>
+    <pre>
+    HTML：
+    &lt;div id="outer">
+        &lt;div id="middle">
+            &lt;div id="inner" class="greenBorder">&lt;/div>
+        &lt;/div>
+    &lt;/div>
+
+    CSS：
+    body {padding: 0; margin: 0;}
+    body,html{height: 100%;}
+    #outer {height: 100%; overflow: hidden; position: relative;width: 100%; background:ivory;}
+    #outer[id] {display: table; position: static;}
+    #middle {position: absolute; top: 50%;} /* for explorer only*/
+    #middle[id] {display: table-cell; vertical-align: middle; position: static;}
+    #inner {position: relative; top: -50%;width: 400px;margin: 0 auto;} /* for explorer only */
+    div.greenBorder {border: 1px solid green; background-color: ivory;}</pre>
+    </blockquote>
+    <div>
+        以上CSS代码的优点是没有hacks，采用了IE不支持的CSS2选择器#value[id]。<br/>
+        CSS2选择器#value[id]相当于选择器#value，但是Internet Explorer不支持这种类型的选择器。同样地.value[class]，相当于.value,这些只有标准浏览器能读懂。<br/>
+        测试：Firefox1.5、Opera9.0、IE6.0+通过。
+    </div>
+
+</div>
+</body>
+</html>
