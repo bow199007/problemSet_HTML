@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IE6不支持position:fixed的解决方案</title>
+<link href="reset.css" rel="stylesheet" type="text/css"/>
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="container">
+    <h2 class="asset-name">IE6不支持position:fixed的解决方案</h2>
+    <p class="branchesNumber">方式一：这种方式可行，但现在已经不推荐使用</p>
+    <blockquote>
+    <pre>
+    /* 除IE6浏览器的通用方法 */
+    .ie6fixedTL{position:fixed;left:0;top:0}
+    .ie6fixedBR{position:fixed;right:0;bottom:0}
+    /* IE6浏览器的特有方法 */
+    * html,* html body{background-image:url(about:blank);background-attachment:fixed}/*解决悬浮元素带来的振动bug*/
+    * html .ie6fixedTL{position:absolute;
+        left:expression(eval(document.documentElement.scrollLeft));
+        top:expression(eval(document.documentElement.scrollTop))
+    }
+    * html .ie6fixedBR{position:absolute;
+        left:expression(eval(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)-(parseInt(this.currentStyle.marginLeft,10)||0)-(parseInt(this.currentStyle.marginRight,10)||0));
+        top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))
+    }</pre>
+    </blockquote>
+
+    <p class="branchesNumber">方式二：采用javascript（包括jquery）</p>
+    <blockquote>
+    <pre>
+    &lt;div class="testFixed" id="testFixed" style="position:fixed;_position:absolute;right:10px;bottom:10px">
+        &lt;a href="#" target="_blank"> &lt;img src="testFixed.jpg" alt="" title="" /> &lt;/a>
+     &lt;/div></pre>
+    </blockquote>
+    <p class="weight">bottom:</p>
+    <blockquote>
+    <pre>
+    window.onload = function(){
+        var isIE6=!!window.ActiveXObject&&!window.XMLHttpRequest;
+        if(isIE6){    //判断IE6执行下面代码
+            var oDiv = document.getElementById("wjfixed");
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            oDiv.style.top = scrollTop + (document.documentElement.clientHeight - oDiv.offsetHeight -10) + 'px';
+            window.onscroll=function(){
+                scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                var t = parseInt(scrollTop + document.documentElement.clientHeight - oDiv.offsetHeight - 10)
+                oDiv.style.top = t + 'px'
+            }
+        }
+    }</pre>
+    </blockquote>
+    <p class="weight">top:</p>
+    <blockquote>
+    <pre>
+    window.onload = function(){
+        var isIE6=!!window.ActiveXObject&&!window.XMLHttpRequest;
+        if(isIE6){
+            var oDiv = document.getElementById("2012AD");
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            oDiv.style.top = scrollTop + 450 + 'px';
+            window.onscroll=function(){
+                scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                //var wh = document.documentElement.clientHeight;//屏幕可见区域的高度
+                //var t = parseInt(scrollTop + wh/2)
+                var t = parseInt(scrollTop + 450)
+                oDiv.style.top = t + 'px'
+            }
+        }
+    }</pre>
+    </blockquote>
+    <p class="weight">jquery:</p>
+    <blockquote>
+    <pre>
+    var isIE6 = $.browser.msie && ($.browser.version == "6.0") && !$.support.style;
+    if(isIE6){
+        $(window).scroll(function(){
+            var st = $(window).scrollTop();
+            $('#top').css("top",st+"px");
+        });
+    }</pre>
+    </blockquote>
+
+</div>
+</body>
+</html>
